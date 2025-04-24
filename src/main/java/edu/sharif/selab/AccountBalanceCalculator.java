@@ -7,19 +7,24 @@ public class AccountBalanceCalculator {
 
     private static List<Transaction> transactionHistory = new ArrayList<>();
 
-    // Method to calculate balance based on transactions
+
     public static int calculateBalance(List<Transaction> transactions) {
         int balance = 0;
         for (Transaction t : transactions) {
             if (t.getType() == TransactionType.DEPOSIT) {
                 balance += t.getAmount();
             } else if (t.getType() == TransactionType.WITHDRAWAL) {
-                balance -= t.getAmount();
+                if (balance >= t.getAmount()) {
+                    balance -= t.getAmount();
+                }
+                else{
+                    System.out.println("You don't have enough balance!");
+                }
             }
-
         }
         return balance;
     }
+
 
     // Method to get the transaction history
     public static List<Transaction> getTransactionHistory() {
