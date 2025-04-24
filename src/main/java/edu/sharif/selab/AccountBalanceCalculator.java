@@ -10,12 +10,15 @@ public class AccountBalanceCalculator {
 
     public static int calculateBalance(List<Transaction> transactions) {
         int balance = 0;
+        clearTransactionHistory();
         for (Transaction t : transactions) {
             if (t.getType() == TransactionType.DEPOSIT) {
                 balance += t.getAmount();
+                addTransaction(t);
             } else if (t.getType() == TransactionType.WITHDRAWAL) {
                 if (balance >= t.getAmount()) {
                     balance -= t.getAmount();
+                    addTransaction(t);
                 }
                 else{
                     System.out.println("You don't have enough balance!");
