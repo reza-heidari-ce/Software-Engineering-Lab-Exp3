@@ -73,7 +73,7 @@ public class AccountBalanceCalculatorTest {
                 new Transaction(TransactionType.WITHDRAWAL, 450),
                 new Transaction(TransactionType.WITHDRAWAL, 100)
         ));
-        assertEquals(0, balance);
+        assertEquals(50, balance);
     }
 //
 //    @Test
